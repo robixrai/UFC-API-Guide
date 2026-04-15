@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>UFC Predictor API Guide</title>
+  <meta name="description" content="Docs and examples for the UFC Predictor API">
+  <meta property="og:title" content="UFC Predictor API Guide">
+  <meta property="og:description" content="Docs and examples for the UFC Predictor API">
+  <!-- load fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+<!-- load your local stylesheet (adjust filename/path if needed) -->
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+  <main class="container" id="main" role="main">
+    <header id="main-header">
+      <h1>UFC Fighters API v1.0</h1>
+      <p>The ultimate data source for MMA fighter stats and real-time rankings.</p>
+    </header>
+
+    <section>
+      <h2>Base URL</h2>
+      <div class="url-row">
+        <div class="url-box" id="base-url">https://ufc-predictor-v1.onrender.com</div>
+        <button class="copy-btn" data-target="#base-url" aria-label="Copy base URL">Copy</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Fighters</h2>
+
+      <div class="endpoint-card">
+        <span class="method">GET</span> <code>/fighters</code>
+        <p>Returns a simple list of all fighter names available in the database. Supports optional filtering.</p>
+        <p><span class="optional">Optional Parameters</span> <code>gender</code> , <code>division</code> </p>
+        <span class="example-label">Example Request</span>
+        <div class="url-row">
+          <code class="url" id="fighters-url">https://ufc-predictor-v1.onrender.com/fighters?gender=men's&amp;division=Lightweight</code>
+          <button class="copy-btn" data-target="#fighters-url" aria-label="Copy fighters example">Copy</button>
+        </div>
+        <p class="note">Tip: encode special characters in query strings. Example: <code>men%27s</code> instead of <code>men's</code>.</p>
+      </div>
+
+      <div class="endpoint-card">
+        <span class="method">GET</span> <code>/fighters/<span class="highlight">{name}</span></code>
+        <p>Returns full details for one fighter. Supports partial name searches. Use the <code>block</code> parameter to filter data categories.</p>
+        <p><span class="optional">Optional Parameter</span> <code>block</code></p>
+        <ul>
+          <li><code>personal-info</code>, <code>career</code>, <code>specs</code>, <code>description</code></li>
+        </ul>
+        <span class="example-label">Example Request</span>
+        <div class="url-row">
+          <code class="url" id="fighter-detail-url">https://ufc-predictor-v1.onrender.com/fighters/Charles%20Oliveira?block=career</code>
+          <button class="copy-btn" data-target="#fighter-detail-url" aria-label="Copy fighter detail example">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+  <h2>Rankings</h2>
+
+  <div class="endpoint-card">
+    <span class="method">GET</span> <code>/rankings/champions</code>
+    <p>Returns a nested dictionary of every champion in every division.</p>
+    <p><span class="optional">Optional Parameters</span>: <code>gender</code>, <code>division</code> — provide <code>gender</code> to limit to men's or women's champions; provide <code>division</code> to return only that division's champion.</p>
+    <div class="url-row">
+      <code class="url" id="champions-url">https://ufc-predictor-v1.onrender.com/rankings/champions?gender=men's&amp;division=Lightweight</code>
+      <button class="copy-btn" data-target="#champions-url" aria-label="Copy champions example">Copy</button>
+    </div>
+    <p class="note">Tip: you can request just the champions for a gender (<code>?gender=men's</code>) or a single division (<code>?division=Lightweight</code>).</p>
+  </div>
+
+  <div class="endpoint-card">
+    <span class="method">GET</span> <code>/rankings/divisions</code>
+    <p>Returns a list of all division names.</p>
+    <p><span class="optional">Optional Parameters</span>: <code>gender</code> — provide <code>gender</code> to return only divisions for that gender.</p>
+    <div class="url-row">
+      <code class="url" id="divisions-url">https://ufc-predictor-v1.onrender.com/rankings/divisions?gender=men's</code>
+      <button class="copy-btn" data-target="#divisions-url" aria-label="Copy divisions example">Copy</button>
+    </div>
+  </div>
+
+  <div class="endpoint-card">
+    <span class="method">GET</span> <code>/rankings/<span class="highlight">{gender}</span>/<span class="highlight">{division}</span></code>
+    <p>Returns rankings for a specific weight class. If a <code>rank</code> query parameter is provided, the endpoint returns only the fighter at that position.</p>
+    <p><span class="optional">Optional Parameters</span>: <code>rank</code></p>
+    <p><strong>Flexible path</strong>: you may call <code>/rankings/{gender}</code> (no division) to get rankings for all divisions of that gender; calling <code>/rankings/{gender}/{division}</code> returns only that division. Optional parameter <code>rank</code> returns the fighter who is that rank in that specific division.</p>
+    <div class="url-row">
+      <code class="url" id="rank-url">https://ufc-predictor-v1.onrender.com/rankings/men's/lightweight?rank=1</code>
+      <button class="copy-btn" data-target="#rank-url" aria-label="Copy rank example">Copy</button>
+    </div>
+    <p class="note">Examples: <code>/rankings/men's</code> → all men's divisions; <code>/rankings/men's/lightweight</code> → lightweight rankings only.</p>
+  </div>
+
+  <div class="endpoint-card">
+    <span class="method">GET</span> <code>/rankings/search/<span class="highlight">{name}</span></code>
+    <p>Returns the rank(s) of a fighter, including their division and gender. Returns all matches for the provided name fragment.</p>
+    <div class="url-row">
+      <code class="url" id="search-url">https://ufc-predictor-v1.onrender.com/rankings/search/Charles%20Oliveira</code>
+      <button class="copy-btn" data-target="#search-url" aria-label="Copy search example">Copy</button>
+    </div>
+  </div>
+</section>
+
+
+    <section>
+      <h2>Python Example</h2>
+      <pre><code class="language-python">import requests
+
+BASE = "https://ufc-predictor-v1.onrender.com"
+
+# Example: Get stats for Charles Oliveira
+fighter_url = f"{BASE}/fighters/Charles Oliveira"
+
+try:
+    response = requests.get(fighter_url, timeout=60)
+    if response.status_code == 200:
+        data = response.json()
+        print(data)
+except Exception as e:
+    print(f"Connection Error: {e}")</code></pre>
+    </section>
+
+    <section>
+      <h2>JSON Response Preview</h2>
+      <pre class="json-preview" aria-hidden="false">
+{
+        "personal-info": {
+            "name": "Charles Oliveira",
+            "nickname": "Do Bronxs",
+            "birth-date": "1989-10-17",
+            "nationality": "Brazilian",
+            "fighting-out-of": "Guaruj\u00e1, S\u00e3o Paulo, Brazil",
+            "country-code": "BR",
+            "weight-class": "Lightweight",
+            "gym": "Chute Boxe Diego Lima",
+            "status": "Active",
+            "gender": "Male"
+        },
+        "specs": {
+            "height": 178,
+            "reach": 74,
+            "stance": "Orthodox"
+        },
+        "career": {
+            "api-id": 0,
+            "wins": 37,
+            "losses": 11,
+            "draws": 0,
+            "no-contests": 1,
+            "ko-tko-wins": 10,
+            "sub-wins": 22,
+            "win-streak": 2,
+            "last-five": [
+                1,
+                1,
+                0,
+                1,
+                0
+            ],
+            "fight-history": [
+                "W vs Max Holloway (U-Dec) R5 5:00 - UFC 326",
+                "W vs Mateusz Gamrot (Sub - Rear Naked Choke) R2 2:48 - UFC Fight Night 261",
+                "L vs Ilia Topuria (KO/TKO - Strikes) R1 2:27 - UFC 317"
+            ]
+        },
+        "description": "Charles Do Bronx is a Submission Specialist. Although his durability is not world class due to his diagnosis, he has managed to achieve the Lightweight title at UFC. "
+}
+
+      </pre>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+      Built for the MMA Community • 2026
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

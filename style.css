@@ -1,0 +1,169 @@
+/* Modern aesthetic theme for UFC Predictor API Guide */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root{
+  --bg-0: #07070a;
+  --bg-1: #0f1115;
+  --card: rgba(255,255,255,0.03);
+  --muted: #9aa3ad;
+  --text: #e9eef6;
+  --accent: #ff6b6b;        /* warm accent */
+  --accent-2: #6bd3ff;      /* cool highlight for paths */
+  --code-bg: #071018;
+  --glass: rgba(255,255,255,0.02);
+  --glass-2: rgba(255,255,255,0.04);
+  --radius: 14px;
+  --shadow-1: 0 6px 18px rgba(2,6,23,0.6);
+  --shadow-2: 0 10px 30px rgba(2,6,23,0.75);
+}
+
+/* Replace existing body rule with this for a uniform dark grey-black background */
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
+
+  /* uniform dark grey-black color */
+  background: #0d0f11;
+}
+
+
+/* Container */
+.container{
+  max-width:980px;
+  margin:48px auto;
+  padding:48px 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
+  border-radius:20px;
+  box-shadow: var(--shadow-1);
+  border: 1px solid var(--glass-2);
+}
+
+/* Header */
+#main-header{ text-align:center; margin-bottom:36px; }
+#main-header h1{
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight:700;
+  font-size: clamp(1.6rem, 4.6vw, 2.6rem);
+  margin:0;
+  letter-spacing:1.6px;
+  color:var(--text);
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  transform-origin:center;
+  transition: transform .12s ease-out, box-shadow .12s ease;
+  will-change: transform;
+}
+#main-header p{ color:var(--muted); margin-top:10px; font-weight:300; }
+
+/* Section headings */
+h2{
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  color:var(--accent);
+  font-size:1.05rem;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin:44px 0 18px;
+  padding-left:12px;
+  border-left:4px solid rgba(255,107,107,0.12);
+}
+
+/* Endpoint cards */
+.endpoint-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  border-radius: var(--radius);
+  padding:20px;
+  margin-bottom:18px;
+  border:1px solid var(--glass);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease, border-color .28s ease;
+}
+.endpoint-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-2);
+  border-color: rgba(255,107,107,0.12);
+}
+
+/* Method pill */
+.method{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:800;
+  font-size:.78rem;
+  color:#fff;
+  background: linear-gradient(180deg,#2e7d32,#1f5f24);
+  box-shadow: 0 4px 10px rgba(46,125,50,0.12);
+  margin-right:12px;
+}
+
+/* URL and code blocks */
+.url-row{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.url-box, .url, pre, .json-preview{
+  background:var(--code-bg);
+  color:var(--accent-2);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.03);
+  font-size:0.98rem;
+  word-break:break-all;
+  box-shadow: inset 0 -6px 18px rgba(0,0,0,0.35);
+}
+
+/* Copy button */
+.copy-btn{
+  background: linear-gradient(180deg,#111216,#1b1f24);
+  color:var(--text);
+  border:1px solid rgba(255,255,255,0.03);
+  padding:8px 12px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
+  transition: transform .12s ease, background .12s ease;
+}
+.copy-btn:hover{ transform: translateY(-2px); background: linear-gradient(180deg,#14161a,#23272b); }
+.copy-btn:active{ transform: translateY(0); }
+
+/* Optional parameter style (unified) */
+.optional{
+  color:#ffb74d;
+  font-style:italic;
+  font-weight:600;
+  font-family:inherit;
+}
+
+/* Code block styling */
+pre{ overflow:auto; line-height:1.5; color:#9be7a6; border-radius:12px; padding:16px; font-size:0.95rem; }
+.json-preview{ color:#ffd08a; }
+
+/* Notes and small text */
+.note{ color:var(--muted); font-size:0.92rem; margin-top:8px; }
+
+/* Reveal animation */
+.reveal{ opacity:0; transform: translateY(18px); transition: all .6s cubic-bezier(.2,.9,.2,1); }
+.reveal.active{ opacity:1; transform: translateY(0); }
+
+/* Footer */
+.footer{ text-align:center; padding:48px 10px; color:var(--muted); font-size:0.9rem; letter-spacing:1.6px; text-transform:uppercase; }
+
+/* Accessibility: visible focus */
+.copy-btn:focus, .url-box:focus, .url:focus { outline: 3px solid rgba(107,211,255,0.12); outline-offset:4px; }
+
+/* Responsive */
+@media (max-width:720px){
+  .container{ padding:28px 16px; margin:28px auto; border-radius:12px; }
+  .endpoint-card{ padding:14px; }
+  .method{ font-size:.78rem; padding:5px 8px; }
+  #main-header h1{ font-size:1.6rem; padding:6px 12px; }
+}
