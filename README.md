@@ -146,23 +146,4 @@ Serve the static docs locally (see Quick start).
 
 If you run the API locally, include an .env.example and a sanitized dataset. Provide docker-compose or framework commands in CONTRIBUTING.md.
 
-Testing & CI
 
-Add unit tests for any new endpoint logic.
-
-Use CI to run tests and deploy docs to GitHub Pages on main pushes.
-
-Security and operational notes
-Do not commit secrets. Use environment variables or secret stores.
-
-Protect production: use API keys, quotas, and logging to detect misuse.
-
-CORS: configure CORS to allow intended clients only.
-
-Backups and monitoring: add uptime checks and error monitoring for the API.
-
-License
-This project is released under the MIT License. See LICENSE for details.
-
-Support and contact
-Open issues on GitHub for bugs, data corrections, or feature requests. For direct contact: Robert (robixrai) — issues and PRs welcome.
