@@ -141,6 +141,7 @@ h2{
   font-style:italic;
   font-weight:600;
   font-family:inherit;
+  margin-right: 0.5rem; /* adds space after the label */
 }
 
 /* Code block styling */

@@ -18,7 +18,7 @@
 
   <main class="container" id="main" role="main">
     <header id="main-header">
-      <h1>UFC Fighters API v1.0</h1>
+      <h1>UFC Fighters API v1.1</h1>
       <p>The ultimate data source for MMA fighter stats and real-time rankings.</p>
     </header>
 
@@ -36,7 +36,7 @@
       <div class="endpoint-card">
         <span class="method">GET</span> <code>/fighters</code>
         <p>Returns a simple list of all fighter names available in the database. Supports optional filtering.</p>
-        <p><span class="optional">Optional Parameters</span> <code>gender</code> , <code>division</code> </p>
+        <p><span class="optional">Optional Parameters</span> <code>     gender</code> , <code>    division</code> </p>
         <span class="example-label">Example Request</span>
         <div class="url-row">
           <code class="url" id="fighters-url">https://ufc-predictor-v1.onrender.com/fighters?gender=men's&amp;division=Lightweight</code>
@@ -66,7 +66,7 @@
   <div class="endpoint-card">
     <span class="method">GET</span> <code>/rankings/champions</code>
     <p>Returns a nested dictionary of every champion in every division.</p>
-    <p><span class="optional">Optional Parameters</span>: <code>gender</code>, <code>division</code> — provide <code>gender</code> to limit to men's or women's champions; provide <code>division</code> to return only that division's champion.</p>
+    <p><span class="optional">Optional Parameters</span> <code>gender</code>, <code>division</code> </p>
     <div class="url-row">
       <code class="url" id="champions-url">https://ufc-predictor-v1.onrender.com/rankings/champions?gender=men's&amp;division=Lightweight</code>
       <button class="copy-btn" data-target="#champions-url" aria-label="Copy champions example">Copy</button>
@@ -77,7 +77,7 @@
   <div class="endpoint-card">
     <span class="method">GET</span> <code>/rankings/divisions</code>
     <p>Returns a list of all division names.</p>
-    <p><span class="optional">Optional Parameters</span>: <code>gender</code> — provide <code>gender</code> to return only divisions for that gender.</p>
+    <p><span class="optional">Optional Parameters</span> <code>gender</code> </p>
     <div class="url-row">
       <code class="url" id="divisions-url">https://ufc-predictor-v1.onrender.com/rankings/divisions?gender=men's</code>
       <button class="copy-btn" data-target="#divisions-url" aria-label="Copy divisions example">Copy</button>
@@ -87,8 +87,8 @@
   <div class="endpoint-card">
     <span class="method">GET</span> <code>/rankings/<span class="highlight">{gender}</span>/<span class="highlight">{division}</span></code>
     <p>Returns rankings for a specific weight class. If a <code>rank</code> query parameter is provided, the endpoint returns only the fighter at that position.</p>
-    <p><span class="optional">Optional Parameters</span>: <code>rank</code></p>
-    <p><strong>Flexible path</strong>: you may call <code>/rankings/{gender}</code> (no division) to get rankings for all divisions of that gender; calling <code>/rankings/{gender}/{division}</code> returns only that division. Optional parameter <code>rank</code> returns the fighter who is that rank in that specific division.</p>
+    <p><span class="optional">Optional Parameter</span> <code>rank</code></p>
+    <p><strong>Flexible path</strong>: you may call <code>/rankings/{gender}</code> to get rankings for all divisions of that gender; <code>/rankings/{gender}/{division}</code> returns only that division. Optional parameter <code>rank</code> returns the fighter who is that rank in that specific division.</p>
     <div class="url-row">
       <code class="url" id="rank-url">https://ufc-predictor-v1.onrender.com/rankings/men's/lightweight?rank=1</code>
       <button class="copy-btn" data-target="#rank-url" aria-label="Copy rank example">Copy</button>
@@ -175,7 +175,7 @@ except Exception as e:
     </section>
 
     <footer class="footer" role="contentinfo">
-      Built for the MMA Community • 2026
+      Built for the MMA Community • 2026 April
     </footer>
   </main>
 
